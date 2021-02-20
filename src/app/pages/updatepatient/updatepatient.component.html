@@ -1,0 +1,1297 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-xl-3 col-lg-6">
+
+        </div>
+
+        <div class="col-xl-3 col-lg-6">
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+
+    <div class="col-xl-10 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Modifier Patient</h3>
+            </div>
+
+          </div>
+        </div>
+        <div class="card-body">
+
+          <h6 class="heading-small text-muted mb-4">Informations générales</h6>
+          <form [formGroup]="UpdatePatientForm" (ngSubmit)="update()" class="pl-lg-4">
+            <!-- Nom, prénom, date de Nais, sexe -->
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="name">Nom</label>
+                  <input type="text" id="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" formControlName="name" class="form-control form-control-alternative" placeholder="Nom" >
+
+                  <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <div *ngIf="f.name.errors.required">Nom Obligatoire</div>
+                    <div *ngIf="f.name.errors.minlength">Au minimum 2 caractères</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="familyName">Prénom</label>
+                  <input type="text" id="familyName" [ngClass]="{ 'is-invalid': submitted && f.familyName.errors }" formControlName="familyName" class="form-control form-control-alternative" placeholder="Prénom" >
+                  <div *ngIf="submitted && f.familyName.errors" class="invalid-feedback">
+                    <div *ngIf="f.familyName.errors.required">Prénom Obligatoire</div>
+                    <div *ngIf="f.familyName.errors.minlength">Au minimum 2 caractères</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="birthday">Date de Naissance</label>
+                  <input type="text" id="birthday" [ngClass]="{ 'is-invalid': submitted && f.birthday.errors }" formControlName="birthday" class="form-control form-control-alternative" placeholder="jj/MM/yyyy" >
+                  <div *ngIf="submitted && f.birthday.errors" class="invalid-feedback">
+                    <div *ngIf="f.birthday.errors.minlength">jj/MM/yyyy Obligatoire</div>
+                    <div *ngIf="f.birthday.errors.maxlength">jj/MM/yyyy Obligatoire</div>
+                  </div>
+                </div></div>
+
+
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label">
+                    Sexe:</label>
+                  <select [ngClass]="{ 'is-invalid': submitted && f.gender.errors }" formControlName="gender"  class="form-control " id="gender">
+
+                    <option value="Female">Femme</option>
+                    <option value="Male">Homme</option>
+
+                  </select>
+
+                  <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                    <div *ngIf="f.gender.errors.required">Sexe Obligatoire</div>
+                  </div>
+                </div></div>
+
+
+            </div>
+            <!-- CIN + contacts -->
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="cin">3 derniers chiffres de la CIN</label>
+                  <input type="text" id="cin" [ngClass]="{ 'is-invalid': submitted && f.cin.errors }" formControlName="cin" class="form-control form-control-alternative" placeholder="*****123" >
+                  <div *ngIf="submitted && f.cin.errors" class="invalid-feedback">
+                    <div *ngIf="f.cin.errors.minlength">Veuillez saisir les 3 derniers chiffres</div>
+                    <div *ngIf="f.cin.errors.maxlength">Veuillez saisir les 3 derniers chiffres</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="phone">Numéro de téléphone</label>
+                  <input type="text" id="phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" formControlName="phone" class="form-control form-control-alternative" placeholder="numéro de tel" >
+                  <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                    <div *ngIf="f.phone.errors.minlength">Veuillez saisir au minimum 6 chiffres</div>
+                    <div *ngIf="f.phone.errors.maxlength">Veuillez saisir au maximum 13 chiffres</div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-lg-3">
+                <div class="form-group">
+
+                  <label class="form-control-label" for="phoneSecond">Numéro de téléphone tierce</label>
+                  <input type="text" id="phoneSecond" [ngClass]="{ 'is-invalid': submitted && f.phoneSecond.errors }" formControlName="phoneSecond" class="form-control form-control-alternative" placeholder="numéro de tel" >
+                  <div *ngIf="submitted && f.phoneSecond.errors" class="invalid-feedback">
+                    <div *ngIf="f.phoneSecond.errors.minlength">Veuillez saisir au minimum 6 chiffres</div>
+                    <div *ngIf="f.phoneSecond.errors.maxlength">Veuillez saisir au maximum 13 chiffres</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="mail">Adresse Email</label>
+                  <input type="text" id="mail" [ngClass]="{ 'is-invalid': submitted && f.mail.errors }" formControlName="mail" class="form-control form-control-alternative" placeholder="adresse@email.tn" >
+                  <div *ngIf="submitted && f.mail.errors" class="invalid-feedback">
+                    <div *ngIf="f.mail.errors.email">Veuillez saisir une adresse Email valide</div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+            <!-- Addresses -->
+            <div class="row">
+
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="Adress">Adresse</label>
+                  <input type="text" id="Adress" [ngClass]="{ 'is-invalid': submitted && f.Adress.errors }" formControlName="Adress" class="form-control form-control-alternative" placeholder="3,Rue blabla,2079" >
+                  <div *ngIf="submitted && f.Adress.errors" class="invalid-feedback">
+                    <div *ngIf="f.Adress.errors.minlength">Veuillez saisir au minimum 10 caratères</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Gouvernerat -->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="gouvernorat" class="form-control-label">
+                  Gouvernorat:</label>
+                <select  class="form-control " id="gouvernorat" [ngClass]="{ 'is-invalid': submitted && f.gouvernorat.errors }" formControlName="gouvernorat">
+
+                  <option   value="Ariana">Ariana</option>
+                  <option value="Béja">Béja</option>
+                  <option value="Ben Arous">Ben Arous</option>
+                  <option value="Bizerte">Bizerte</option>
+                  <option value="Gabès">Gabès</option>
+                  <option value="Gafsa">Gafsa</option>
+                  <option value="Jendouba">Jendouba</option>
+                  <option value="Kairouan">Kairouan</option>
+                  <option value="Kasserine">Kasserine</option>
+                  <option value="Kébili">Kébili</option>
+                  <option value="Le Kef">Le Kef</option>
+                  <option value="Mahdia">Mahdia</option>
+                  <option value="La Manouba">La Manouba</option>
+                  <option value="Médenine">Médenine</option>
+                  <option value="Monastir">Monastir</option>
+                  <option value="Nabeul">Nabeul</option>
+                  <option value="Sfax">Sfax</option>
+                  <option value="Sidi Bouzid">Sidi Bouzid</option>
+                  <option value="Siliana">Siliana</option>
+                  <option value="Sousse">Sousse</option>
+                  <option value="Tataouine">Tataouine</option>
+                  <option value="Tozeur">Tozeur</option>
+                  <option value="Tunis">Tunis</option>
+                  <option value="Zaghouan">Zaghouan</option>
+
+
+                </select>
+                <div *ngIf="submitted && f.gouvernorat.errors" class="invalid-feedback">
+                  <div *ngIf="f.gouvernorat.errors.required">Gouvernorat Obligatoire</div>
+                </div>
+              </div>
+
+
+
+              </div>
+
+              <!-- nationality -->
+              <!--  <div class="col-lg-3"><div class="form-group">
+                  <label for="nationality" class="form-control-label">
+                    Nationalité:</label>
+                  <select  class="form-control " id="nationality" [ngClass]="{ 'is-invalid': submitted && f.nationality.errors }" formControlName="nationality">
+
+                    <option *ngFor="let nat of nationalites">{{nat}}</option>
+
+                  </select>
+                  <div *ngIf="submitted && f.nationality.errors" class="invalid-feedback">
+                    <div *ngIf="f.nationality.errors.required">Nationalité Obligatoire</div>
+                  </div>
+                </div>
+                </div> -->
+
+
+            </div>
+
+            <hr class="my-4" />
+
+            <h6 class="heading text-muted mb-4">Motif de consultation</h6>
+            <h6 class="heading text-muted mb-4">Symptômes</h6>
+
+            <!-- Agueuesie, Anosmie,Asthenie, Fievre-->
+            <div class="row">
+              <div class="col-lg-3"><div class="form-group">
+                <label for="ageusia" class="form-control-label">Agueusie</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox" id="ageusia"  [ngClass]="{ 'is-invalid': submitted && f.ageusia.errors }" formControlName="ageusia">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div>
+              </div>
+
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="anosmia" class="form-control-label">
+                  Anosmie</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox" id="anosmia"  [ngClass]="{ 'is-invalid': submitted && f.anosmia.errors }" formControlName="anosmia">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="asthenia" class="form-control-label">
+                  Asthenie</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="asthenia" [ngClass]="{ 'is-invalid': submitted && f.asthenia.errors }" formControlName="asthenia">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="fever" class="form-control-label">
+                  Fièvre</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="fever" [ngClass]="{ 'is-invalid': submitted && f.fever.errors }" formControlName="fever">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+            </div>
+
+            <!-- céphalées, myalgies,courbatures, confusion-->
+            <div class="row">
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="headaches" class="form-control-label">
+                  céphalées:</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="headaches" [ngClass]="{ 'is-invalid': submitted && f.headaches.errors }" formControlName="headaches">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="myalgia" class="form-control-label">
+                  Myalgies</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="myalgia" [ngClass]="{ 'is-invalid': submitted && f.myalgia.errors }" formControlName="myalgia">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="muscleSoreness" class="form-control-label">
+                  Courbatures</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="muscleSoreness" [ngClass]="{ 'is-invalid': submitted && f.muscleSoreness.errors }" formControlName="muscleSoreness">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="confusion" class="form-control-label">
+                  confusion:</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="confusion" [ngClass]="{ 'is-invalid': submitted && f.confusion.errors }" formControlName="confusion">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+            </div>
+
+            <!-- Toux, Rhinnite,dyspnée, Fievre-->
+            <div class="row">
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="cough" class="form-control-label">
+                  Toux</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="cough" [ngClass]="{ 'is-invalid': submitted && f.cough.errors }" formControlName="cough">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="Rhinitis" class="form-control-label">
+                  Rhinnite</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="Rhinitis" [ngClass]="{ 'is-invalid': submitted && f.Rhinitis.errors }" formControlName="Rhinitis">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="dyspnea" class="form-control-label">
+                  Dyspnée </label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="dyspnea" [ngClass]="{ 'is-invalid': submitted && f.dyspnea.errors }" formControlName="dyspnea">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+            </div>
+
+            <!-- Nausée, Diahrée,Vomissements-->
+
+            <div class="row">
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="nausea" class="form-control-label">
+                  Nausée</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="nausea" [ngClass]="{ 'is-invalid': submitted && f.nausea.errors }" formControlName="nausea">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="diarrhea" class="form-control-label">
+                  Diahrrée</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="diarrhea" [ngClass]="{ 'is-invalid': submitted && f.diarrhea.errors }" formControlName="diarrhea">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="vomit" class="form-control-label">
+                  Vomissement</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="vomit" [ngClass]="{ 'is-invalid': submitted && f.vomit.errors }" formControlName="vomit">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+            </div>
+
+
+
+            <!-- AEG,doul. thoraciques, expectorations     -->
+            <div class="row">
+
+              <!-- Description -->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="aeg" class="form-control-label">
+                  Altération de l'Etat general:</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="aeg" [ngClass]="{ 'is-invalid': submitted && f.aeg.errors }" formControlName="aeg">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="chestPain" class="form-control-label">
+                  Douleurs thoraciques</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="chestPain" [ngClass]="{ 'is-invalid': submitted && f.chestPain.errors }" formControlName="chestPain">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="expectoration" class="form-control-label">
+                  expectorations</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="expectoration" [ngClass]="{ 'is-invalid': submitted && f.expectoration.errors }" formControlName="expectoration">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+            </div>
+
+            <hr class="my-4" />
+
+            <h6 class="heading text-muted mb-4">Défaillances</h6>
+            <!--det. resp ,det. neur , inst. hémo,urg. métabolique-->
+            <div class="row">
+
+
+              <!-- Description -->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="respiratoryDistress" class="form-control-label">
+                  Detresse respiratoire</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="respiratoryDistress" [ngClass]="{ 'is-invalid': submitted && f.respiratoryDistress.errors }" formControlName="respiratoryDistress">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="neurologicalDistress" class="form-control-label">
+                  Detresse neurologique</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="neurologicalDistress" [ngClass]="{ 'is-invalid': submitted && f.neurologicalDistress.errors }" formControlName="neurologicalDistress">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="hemodynamicInstability" class="form-control-label">
+                  Instabilité hémodynamique</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="hemodynamicInstability" [ngClass]="{ 'is-invalid': submitted && f.hemodynamicInstability.errors }" formControlName="hemodynamicInstability">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="metabolicEmergency" class="form-control-label">
+                  Urgence métabolique</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="metabolicEmergency" [ngClass]="{ 'is-invalid': submitted && f.metabolicEmergency.errors }" formControlName="metabolicEmergency">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+            </div>
+            <hr class="my-4" />
+            <!--autres Sympthômes, date de début des symptômes, 1ers symptomes-->
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="otherSymptomes">Autres Symptômes</label>
+                  <input type="text" id="otherSymptomes" [ngClass]="{ 'is-invalid': submitted && f.otherSymptomes.errors }" formControlName="otherSymptomes" class="form-control form-control-alternative" placeholder="autres" >
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="symptomsStartDate">Date du début des symptomes </label>
+                  <input type="text" id="symptomsStartDate" [ngClass]="{ 'is-invalid': submitted && f.symptomsStartDate.errors }" formControlName="symptomsStartDate" class="form-control form-control-alternative" placeholder="autres" >
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="firstSymptoms">1er Symptomes  </label>
+                  <input type="text" id="firstSymptoms" [ngClass]="{ 'is-invalid': submitted && f.firstSymptoms.errors }" formControlName="firstSymptoms" class="form-control form-control-alternative" placeholder="autres" >
+                </div>
+              </div>
+
+            </div>
+
+            <hr class="my-4" />
+
+
+
+            <h6 class="heading-small text-muted mb-4">Antécédents</h6>
+            <!--HTA,diabetes,acfa,Heart Failure-->
+            <div class="row">
+              <!--HTA-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="hta" class="form-control-label">
+                  HTA</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="hta" [ngClass]="{ 'is-invalid': submitted && f.hta.errors }" formControlName="hta">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--diabetes-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="diabetes" class="form-control-label">
+                  Diabetes</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="diabetes" [ngClass]="{ 'is-invalid': submitted && f.diabetes.errors }" formControlName="diabetes">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--acFa-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="acFa" class="form-control-label">
+                  ACFA</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="acFa" [ngClass]="{ 'is-invalid': submitted && f.acFa.errors }" formControlName="acFa">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--heartFailure-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="heartFailure" class="form-control-label">
+                  Insuffisance Cardiaque</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="heartFailure" [ngClass]="{ 'is-invalid': submitted && f.heartFailure.errors }" formControlName="heartFailure">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+
+
+
+            </div>
+
+            <!--CoronaryArtery,bpco,asthme,Hemodyalise-->
+            <div class="row">
+              <!--CoronaryArtery-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="CoronaryArtery" class="form-control-label">
+                  coronaropathie</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="CoronaryArtery" [ngClass]="{ 'is-invalid': submitted && f.CoronaryArtery.errors }" formControlName="CoronaryArtery">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--BPCO-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="bpco" class="form-control-label">
+                  BPCO</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="bpco" [ngClass]="{ 'is-invalid': submitted && f.bpco.errors }" formControlName="bpco">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--asthma-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="asthma" class="form-control-label">
+                  Asthme</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="asthma" [ngClass]="{ 'is-invalid': submitted && f.asthma.errors }" formControlName="asthma">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--hemodialysis-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="hemodialysis" class="form-control-label">
+                  Hémodialyse</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="hemodialysis" [ngClass]="{ 'is-invalid': submitted && f.hemodialysis.errors }" formControlName="hemodialysis">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+
+
+
+            </div>
+
+            <!--AVC-I,AVC-H,Insf Ren,Cancer-->
+            <div class="row">
+              <!--ischemicStroke-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="ischemicStrokes" class="form-control-label">
+                  AVC-ischémique</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="ischemicStrokes" [ngClass]="{ 'is-invalid': submitted && f.ischemicStrokes.errors }" formControlName="ischemicStrokes">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--hemorrhagicStroke-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="hemorrhagicStroke" class="form-control-label">
+                  AVC-Hémoragique</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="hemorrhagicStroke" [ngClass]="{ 'is-invalid': submitted && f.hemorrhagicStroke.errors }" formControlName="hemorrhagicStroke">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--RenalFailure-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="RenalFailure" class="form-control-label">
+                  Insuffisance rénale</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="RenalFailure" [ngClass]="{ 'is-invalid': submitted && f.RenalFailure.errors }" formControlName="RenalFailure">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--activeCancer-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="activeCancer" class="form-control-label">
+                  Cancer évolutif</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="activeCancer" [ngClass]="{ 'is-invalid': submitted && f.activeCancer.errors }" formControlName="activeCancer">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+
+
+
+            </div>
+
+            <!--immun.depr., path.pulm,mal.gen,tabac-->
+            <div class="row">
+              <!--immunosuppression-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="immunosuppression" class="form-control-label">
+                  Immunodepression</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="immunosuppression" [ngClass]="{ 'is-invalid': submitted && f.immunosuppression.errors }" formControlName="immunosuppression">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--pulmonaryPathology-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="pulmonaryPathology" class="form-control-label">
+                  Pathologie Pulmonaire</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="pulmonaryPathology" [ngClass]="{ 'is-invalid': submitted && f.pulmonaryPathology.errors }" formControlName="pulmonaryPathology">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--generalIllness-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="generalIllness" class="form-control-label">
+                  Maladie générale</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="generalIllness" [ngClass]="{ 'is-invalid': submitted && f.generalIllness.errors }" formControlName="generalIllness">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--Tabac-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="smoker" class="form-control-label">
+                  tabagique</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="smoker" [ngClass]="{ 'is-invalid': submitted && f.smoker.errors }" formControlName="smoker">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div>
+
+
+
+              </div>
+
+
+
+
+            </div>
+            <!--Autres-->
+            <div class="row">
+              <!--otherchronicPathologies-->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="otherchronicPathologies">Autres pathologies chroniques:</label>
+                  <input type="text" id="otherchronicPathologies" [ngClass]="{ 'is-invalid': submitted && f.otherchronicPathologies.errors }" formControlName="otherchronicPathologies" class="form-control form-control-alternative" placeholder="autres pathologies chroniques" >
+                </div>
+              </div>
+
+
+
+
+
+
+
+            </div>
+            <hr class="my-4" />
+            <!--traitement hab.-->
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="usualTreatment">Traitement habituel</label>
+                  <input type="text" id="usualTreatment" [ngClass]="{ 'is-invalid': submitted && f.usualTreatment.errors }" formControlName="usualTreatment" class="form-control form-control-alternative" placeholder="..." >
+                </div>
+              </div>
+            </div>
+            <h6 class="heading text-muted mb-4">Traitement récent</h6>
+            <!--AINS,corticotherapi,immunosup,chimiother-->
+            <div class="row">
+              <!--AINS-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="ains" class="form-control-label">
+                  AINS</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="ains" [ngClass]="{ 'is-invalid': submitted && f.ains.errors }" formControlName="ains">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--corticotherapi-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="corticotherapy" class="form-control-label">
+                  Corticothérapie</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="corticotherapy" [ngClass]="{ 'is-invalid': submitted && f.corticotherapy.errors }" formControlName="corticotherapy">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--immunosuppressant-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="immunosuppressant" class="form-control-label">
+                  Immunosuppresseur</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="immunosuppressant" [ngClass]="{ 'is-invalid': submitted && f.immunosuppressant.errors }" formControlName="immunosuppressant">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--chemotherapy-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="chemotherapy" class="form-control-label">
+                  chimiothérapie</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="chemotherapy" [ngClass]="{ 'is-invalid': submitted && f.chemotherapy.errors }" formControlName="chemotherapy">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+
+
+            </div>
+            <hr class="my-4" />
+            <h6 class="heading text-muted mb-4">Type de contact</h6>
+
+            <!-- origin,contacts,isolations-->
+            <div class="row">
+              <!--originFromAnEndemicArea-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="originFromAnEndemicArea" class="form-control-label">
+                  Provenance d'une zone endémique</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="originFromAnEndemicArea" [ngClass]="{ 'is-invalid': submitted && f.originFromAnEndemicArea.errors }" formControlName="originFromAnEndemicArea">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--contactWithAPositiveCovid-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="contactWithAPositiveCovid" class="form-control-label">
+                  Contact avec un Covid positif </label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="contactWithAPositiveCovid" [ngClass]="{ 'is-invalid': submitted && f.contactWithAPositiveCovid.errors }" formControlName="contactWithAPositiveCovid">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--ContactWithASuspectedCase-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="ContactWithASuspectedCase" class="form-control-label">
+                  Contact avec un cas suspect</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="ContactWithASuspectedCase" [ngClass]="{ 'is-invalid': submitted && f.ContactWithASuspectedCase.errors }" formControlName="ContactWithASuspectedCase">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--respectForIsolation-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="respectForIsolation" class="form-control-label">
+                  Respect de l'isolement </label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="respectForIsolation" [ngClass]="{ 'is-invalid': submitted && f.respectForIsolation.errors }" formControlName="respectForIsolation">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+
+
+            </div>
+            <!--membres de la famille-->
+            <div class ="row">
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="familyMembers">Membres de la famille </label>
+                  <input type="number" min="0" id="familyMembers" [ngClass]="{ 'is-invalid': submitted && f.familyMembers.errors }" formControlName="familyMembers" class="form-control form-control-alternative" placeholder="3" >
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <hr class="my-4" />
+            <h6 class="heading text-muted mb-4">Consultation</h6>
+            <!--FR SPo2,FI02,PAS,-->
+            <div class="row">
+              <!--FR-->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="fr">FR</label>
+                  <input type="number" min="0" id="fr" class="form-control form-control-alternative" placeholder=".." [ngClass]="{ 'is-invalid': submitted && f.fr.errors }" formControlName="fr">
+                  <div *ngIf="submitted && f.fr.errors" class="invalid-feedback">
+                    <div *ngIf="f.fr.errors.min">fc minimum 0</div>
+                    <div *ngIf="f.fr.errors.max">fc maximum 50</div>
+                  </div>
+                </div>
+              </div>
+              <!--spo2-->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="spo2">Sp02</label>
+                  <input type="number" min="0" id="spo2" class="form-control form-control-alternative" placeholder=".." [ngClass]="{ 'is-invalid': submitted && f.spo2.errors }" formControlName="spo2">
+                  <div *ngIf="submitted && f.spo2.errors" class="invalid-feedback">
+                    <div *ngIf="f.spo2.errors.min">fc minimum 30</div>
+                    <div *ngIf="f.spo2.errors.max">fc maximum 100</div>
+                  </div>
+                </div>
+              </div>
+              <!--fio2-->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="spo2">Fio2</label>
+                  <input type="number" min="0" id="fio2" class="form-control form-control-alternative" placeholder=".." [ngClass]="{ 'is-invalid': submitted && f.spo2.errors }" formControlName="fio2">
+                  <div *ngIf="submitted && f.fio2.errors" class="invalid-feedback">
+                    <div *ngIf="f.fio2.errors.min">fc minimum 21</div>
+                    <div *ngIf="f.fio2.errors.max">fc maximum 100</div>
+                  </div>
+                </div>
+              </div>
+              <!--pas-->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="pas">PAS</label>
+                  <input type="number" min="0" id="pas" class="form-control form-control-alternative" placeholder=".." [ngClass]="{ 'is-invalid': submitted && f.pas.errors }" formControlName="pas">
+                  <div *ngIf="submitted && f.pas.errors" class="invalid-feedback">
+                    <div *ngIf="f.pas.errors.min">fc minimum 0</div>
+                    <div *ngIf="f.pas.errors.max">fc maximum 30</div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+            </div>
+
+            <!--pad fc,gcs,gad,-->
+            <div class="row">
+              <!--pad-->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="pad">PAD</label>
+                  <input type="number" min="0" id="pad" class="form-control form-control-alternative" placeholder=".." [ngClass]="{ 'is-invalid': submitted && f.pad.errors }" formControlName="pad">
+                  <div *ngIf="submitted && f.pad.errors" class="invalid-feedback">
+                    <div *ngIf="f.pad.errors.min">fc minimum 0</div>
+                    <div *ngIf="f.pad.errors.max">fc maximum 20</div>
+                  </div>
+                </div>
+              </div>
+              <!--fc-->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="fc">FC</label>
+                  <input type="number" min="0" id="fc" class="form-control form-control-alternative" placeholder=".." [ngClass]="{ 'is-invalid': submitted && f.fc.errors }" formControlName="fc">
+                  <div *ngIf="submitted && f.fc.errors" class="invalid-feedback">
+                    <div *ngIf="f.fc.errors.min">fc minimum 0</div>
+                    <div *ngIf="f.fc.errors.max">fc maximum 300</div>
+                  </div>
+                </div>
+              </div>
+              <!--gcs-->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="gcs">GCS</label>
+                  <input type="number" min="0" id="gcs" class="form-control form-control-alternative" placeholder=".." [ngClass]="{ 'is-invalid': submitted && f.gcs.errors }" formControlName="gcs">
+                  <div *ngIf="submitted && f.gcs.errors" class="invalid-feedback">
+                    <div *ngIf="f.gcs.errors.min">GCS minimum 3</div>
+                    <div *ngIf="f.gcs.errors.max">GCS maximum 15</div>
+                  </div>
+                </div>
+              </div>
+              <!--gad-->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="gad">GAD</label>
+                  <input type="number" min="0" id="gad" class="form-control form-control-alternative" placeholder=".." [ngClass]="{ 'is-invalid': submitted && f.gad.errors }" formControlName="gad" >
+                  <div *ngIf="submitted && f.gad.errors" class="invalid-feedback">
+                    <div *ngIf="f.gad.errors.min">GAD minimum 0.1</div>
+                    <div *ngIf="f.gad.errors.max">GAD maximum 6</div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+            </div>
+
+            <!--Temp -->
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="temperatur">Temperature</label>
+                  <input type="number" min="0" id="temperatur" [ngClass]="{ 'is-invalid': submitted && f.temperatur.errors }" formControlName="temperatur" class="form-control form-control-alternative" placeholder="37" >
+                  <div *ngIf="submitted && f.temperatur.errors" class="invalid-feedback">
+                    <div *ngIf="f.temperatur.errors.required">Temperature Obligatoire</div>
+                    <div *ngIf="f.temperatur.errors.min">Temperature minimum 27</div>
+                    <div *ngIf="f.temperatur.errors.max">Temperature minimum 43</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h6 class="heading text-muted mb-4">Sous:</h6>
+
+            <!-- NAD,DOB,ADR,sédaté-->
+            <div class="row">
+              <!--nad-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="nad" class="form-control-label">
+                  NAD</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="nad" [ngClass]="{ 'is-invalid': submitted && f.nad.errors }" formControlName="nad">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--dob-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="dob" class="form-control-label">
+                  Dopa </label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="dob" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" formControlName="dob">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--adr-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="adr" class="form-control-label">
+                  ADR</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="adr" [ngClass]="{ 'is-invalid': submitted && f.adr.errors }" formControlName="adr">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--sedated-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="sedated" class="form-control-label">
+                  Sédaté </label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="sedated" [ngClass]="{ 'is-invalid': submitted && f.sedated.errors }" formControlName="sedated">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+
+
+            </div>
+
+            <!-- signsOfStruggles,coldEnds,marbrure-->
+            <div class="row">
+              <!--signsOfStruggles-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="signsOfStruggles" class="form-control-label">
+                  Signes de luttes </label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="signsOfStruggles" [ngClass]="{ 'is-invalid': submitted && f.signsOfStruggles.errors }" formControlName="signsOfStruggles">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--coldEnds-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="coldEnds" class="form-control-label">
+                  Extrémités froides  </label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="coldEnds" [ngClass]="{ 'is-invalid': submitted && f.coldEnds.errors }" formControlName="coldEnds">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--marbrure-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="marbrure" class="form-control-label">
+                  marbrures</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="marbrure" [ngClass]="{ 'is-invalid': submitted && f.marbrure.errors }" formControlName="marbrure">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+
+
+
+            </div>
+
+            <hr class="my-4" />
+            <h6 class="heading text-muted mb-4">Orientation:</h6>
+            <!--orientation, PCR-->
+            <div class ="row">
+              <!-- Orientation-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="orientation" class="form-control-label">
+                  orientation:</label>
+                <select  class="form-control " id="orientation" [ngClass]="{ 'is-invalid': submitted && f.orientation.errors }" formControlName="orientation">
+                  <option value="Domicile">Domicile</option>
+                  <option value="Lit simple ">Lit simple </option>
+                  <option value="Lit avec oxygénation ">Lit avec oxygénation </option>
+                  <option value="Lit réanimation ">Lit réanimation </option>
+
+                </select>
+              </div>
+              </div>
+
+              <!-- PCR-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="pcr" class="form-control-label">
+                  PCR:</label>
+                <select  class="form-control " id="pcr" [ngClass]="{ 'is-invalid': submitted && f.pcr.errors }" formControlName="pcr">
+                  <option value="Positif">Positif</option>
+                  <option value="Négatif ">Négatif</option>
+                  <option value="En attente de résultat">En attente de résultat </option>
+                  <option value="non fait">non fait</option>
+
+                </select>
+              </div>
+              </div>
+
+              <!--datePcr-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="datepcr" class="form-control-label">
+                  Date PCR:</label>
+                <!--<div class="input-group">
+                  <input id="datepcr" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.datepcr.errors }" formControlName="datepcr" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+                  <div class="input-group-append">
+                    <button class="btn fas fa-calendar-alt" (click)="dp.toggle()" type="button"></button>
+                  </div>
+                </div>-->
+                <input type="text" id="datepcr" [ngClass]="{ 'is-invalid': submitted && f.datepcr.errors }" formControlName="datepcr" class="form-control form-control-alternative" placeholder="Date PCR dd/MM/yyyy" >
+              </div>
+              </div>
+
+              <!--tdm-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="tdm" class="form-control-label">
+                  TDM:</label>
+                <input type="text" id="tdm" [ngClass]="{ 'is-invalid': submitted && f.tdm.errors }" formControlName="tdm" class="form-control form-control-alternative" placeholder="TDM" >
+              </div>
+              </div>
+
+              <!--healthCareWorker-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="healthCareWorker" class="form-control-label">
+                  Agent de santé:</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="healthCareWorker" [ngClass]="{ 'is-invalid': submitted && f.healthCareWorker.errors }" formControlName="healthCareWorker">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--localCase-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="localCase" class="form-control-label">
+                  Cas de contamination locale:</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="localCase" [ngClass]="{ 'is-invalid': submitted && f.localCase.errors }" formControlName="localCase">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+            </div>
+
+            <hr class="my-4" />
+            <h6 class="heading text-muted mb-4">Traitement:</h6>
+
+            <!--HOchlo,chlo,azythro,paracétamol-->
+            <div class="row">
+              <!--Hydroxycholoroquine-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="hydroxycholoroquine" class="form-control-label">
+                  Hydroxycholoroquine</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="hydroxycholoroquine" [ngClass]="{ 'is-invalid': submitted && f.hydroxycholoroquine.errors }" formControlName="hydroxycholoroquine">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--chlo-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="chloroquine" class="form-control-label">
+                  Chloroquine </label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="chloroquine" [ngClass]="{ 'is-invalid': submitted && f.chloroquine.errors }" formControlName="chloroquine">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--azythro-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="azithromycine" class="form-control-label">
+                  Azithromycine</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="azithromycine" [ngClass]="{ 'is-invalid': submitted && f.azithromycine.errors }" formControlName="azithromycine">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--Paracetamol-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="paracetamol" class="form-control-label">
+                  Paracetamol </label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="paracetamol" [ngClass]="{ 'is-invalid': submitted && f.paracetamol.errors }" formControlName="paracetamol">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+
+
+            </div>
+
+            <!--Sintrom,Lopinavir/Ritonavir,Oseltamivir,Corticoides -->
+            <div class="row">
+              <!--Sintrom-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="sintrom" class="form-control-label">
+                  Sintrom</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="sintrom" [ngClass]="{ 'is-invalid': submitted && f.sintrom.errors }" formControlName="sintrom">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--Lopinavir/Ritonavir-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="lopinavir" class="form-control-label">
+                  Lopinavir/Ritonavir </label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="lopinavir" [ngClass]="{ 'is-invalid': submitted && f.lopinavir.errors }" formControlName="lopinavir">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--Oseltamivir-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="oseltamivir" class="form-control-label">
+                  Oseltamivir</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="oseltamivir" [ngClass]="{ 'is-invalid': submitted && f.oseltamivir.errors }" formControlName="oseltamivir">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--Corticoides -->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="corticoides" class="form-control-label">
+                  Corticoides</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox" id="corticoides" [ngClass]="{ 'is-invalid': submitted && f.corticoides.errors }" formControlName="corticoides">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+
+
+            </div>
+
+            <!--heparine,antibiotique-->
+            <div class ="row">
+              <!-- heparine-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="heparine" class="form-control-label">
+                  heparine:</label>
+                <select  class="form-control" id="heparine" [ngClass]="{ 'is-invalid': submitted && f.heparine.errors }" formControlName="heparine">
+
+                  <option value="Non" >Non</option>
+                  <option value="Hep 1">Hep 1</option>
+                  <option value="Hep 2">Hep 2</option>
+                  <option value="Hep 3">Hep 3</option>
+
+                </select>
+              </div>
+              </div>
+
+              <!-- Antibiotique-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="antibiotique" class="form-control-label">
+                  antibiotique:</label>
+                <select  class="form-control" id="antibiotique" [ngClass]="{ 'is-invalid': submitted && f.antibiotique.errors }" formControlName="antibiotique">
+                  <option value="Non">Non</option>
+                  <option value="amox-acide clavulanique">amox-acide clavulanique</option>
+                  <option Value="ceftriaxone">ceftriaxone</option>
+                  <option value="cefotaxime">cefotaxime</option>
+
+
+
+                </select>
+              </div>
+              </div>
+
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="otherTreatment">Nom</label>
+                  <input type="text" id="otherTreatment" [ngClass]="{ 'is-invalid': submitted && f.otherTreatment.errors }" formControlName="otherTreatment" class="form-control form-control-alternative" placeholder="Autre Traitement..." >
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-10">
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary" >Modifier</button>
+
+                <a routerLink="/tables" ><button type="reset" class="btn btn-secondary">
+                  Annuler</button></a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

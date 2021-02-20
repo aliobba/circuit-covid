@@ -1,0 +1,107 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <div class="row" >
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">liste des patients : <span class="h2 font-weight-bold mb-0">{{ListPatient.length}}</span></h3>
+
+
+        </div>
+
+        <div class="col-md-4 kt-margin-b-20-tablet-and-mobile">
+          <div class="kt-input-icon kt-input-icon--left">
+            <input type="text" class="form-control" placeholder="Recherche nom ou prénom..." id="generalSearch" name="searchTerm" [(ngModel)]="searchTerm">
+            <span class="ml-3" *ngIf="loading$ | async">Loading...</span>
+            <span class="kt-input-icon__icon kt-input-icon__icon--left">
+
+							<span><i class="la la-search"></i></span>
+
+						</span>
+
+
+          </div>
+        </div>
+        <br>
+        <div class="table-responsive" >
+
+          <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+
+
+          <table class="table align-items-center table-flush"  >
+            <thead class="thead-light">
+            <tr >
+              <th scope="col" sortable="name" (sort)="onSort($event)">Nom</th>
+              <th scope="col" sortable="familyName" (sort)="onSort($event)">Prénom</th>
+              <th scope="col" sortable="gender" (sort)="onSort($event)">sexe</th>
+              <th scope="col" sortable="email" (sort)="onSort($event)">Email</th>
+
+              <th scope="col" sortable="phone" (sort)="onSort($event)">Téléphone</th>
+
+
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr *ngFor="let liste of patients$ | async">
+              <th scope="row">
+                <div class="d-flex align-items-center">
+                  <ngb-highlight [result]="liste.name" [term]="searchTerm"></ngb-highlight>
+                </div>
+              </th>
+              <td>
+                <div class="d-flex align-items-center">
+                  <ngb-highlight [result]="liste.familyName" [term]="searchTerm"></ngb-highlight>
+                </div>
+              </td>
+
+
+              <td>
+                <div class="d-flex align-items-center">
+                  {{liste.gender}}
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  {{liste.email}}
+                </div>
+              </td>
+
+              <td>
+                <div class="d-flex align-items-center">
+                  {{liste.phone}}
+                </div>
+              </td>
+
+
+            </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+
+        <div class="card-footer py-4">
+          <nav aria-label="...">
+            <div class="d-flex justify-content-between p-2">
+              <ngb-pagination [collectionSize]="(totals$ | async)!" [(page)]="page" pageSize="{{pageSize}}" aria-label="Custom pagination">
+              </ngb-pagination>
+              <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+                <option [ngValue]="2">2 lignes par page</option>
+                <option [ngValue]="4">4 lignes par page</option>
+                <option [ngValue]="6">6 lignes par page</option>
+                <option [ngValue]="8">8 lignes par page</option>
+              </select>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

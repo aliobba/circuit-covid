@@ -1,0 +1,931 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-xl-3 col-lg-6">
+
+        </div>
+
+        <div class="col-xl-3 col-lg-6">
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+
+  <div class="row">
+
+    <div class="col-xl-10 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Fiche de patient</h3>
+
+              {{this.docrole | uppercase}} : {{this.docadd | uppercase}}
+
+
+            </div>
+            <div class="header"  style="alignment: right">
+
+
+              <button type="reset"   type="button" (click)="captureScreen4()" class="btn btn-primary" >Export pdf</button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body" id="test">
+
+          <h6 class="heading-small text-muted mb-4">Informations générales</h6>
+
+            <!-- Nom, prénom, date de Nais, sexe -->
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="form-group">
+                <label class="form-control-label"  >Nom :</label>
+                  <label class="form-control-label"  > {{this.name}}</label>
+                </div>
+              </div>
+
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" >Prénom :</label>
+                  <label class="form-control-label"  > {{this.familyName}}</label>
+                </div>
+              </div>
+
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" >Date de Naissance :</label>
+                  <label class="form-control-label"  > {{this.birthday}}</label>
+                </div></div>
+
+
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label">
+                    Sexe :</label>
+                  <label class="form-control-label"  > {{this.gender}}</label>
+                </div></div>
+
+
+            </div>
+            <!-- CIN + contacts -->
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" >3 derniers chiffres de la CIN :</label>
+                  <label class="form-control-label"  > {{this.cin}}</label>
+                </div>
+              </div>
+
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" >Numéro de téléphone :</label>
+                  <label class="form-control-label"  > {{this.phone}}</label>
+                </div>
+              </div>
+
+
+              <div class="col-lg-3" >
+                <div class="form-group" >
+
+                  <label class="form-control-label" >Numéro de téléphone tierce :</label>
+                  <label class="form-control-label" >{{this.secondPhone}}</label>
+
+                </div>
+              </div>
+
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" >Adresse Email :</label>
+                  <label class="form-control-label" >{{this.email}}</label>
+                </div>
+              </div>
+
+
+            </div>
+            <!-- Addresses -->
+            <div class="row">
+
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label">Adresse :</label>
+                  <label class="form-control-label" >{{this.address}}</label>
+                </div>
+              </div>
+
+              <!-- Gouvernerat -->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Gouvernorat :</label>
+                <label class="form-control-label" >{{this.gouvernorat}}</label>
+
+              </div>
+
+
+
+              </div>
+
+              <!-- nationality -->
+              <div class="col-lg-3">
+                <div class="form-group">
+                <label  class="form-control-label">
+                  Nationalité :</label>
+                <label class="form-control-label" >{{this.nationality}}</label>
+
+              </div>
+              </div>
+
+
+            </div>
+
+            <hr class="my-4" />
+
+            <h6 class="heading text-muted mb-4">Motif de consultation</h6>
+            <h6 class="heading text-muted mb-4">Symptômes</h6>
+
+            <!-- Agueuesie, Anosmie,Asthenie, Fievre-->
+            <div class="row">
+              <div class="col-lg-3" *ngIf="isShown" >
+                <div class="form-group" >
+                <label  class="form-control-label">Agueusie</label>
+
+              </div>
+              </div>
+
+
+              <div class="col-lg-3"  ><div class="form-group">
+                <label class="form-control-label">
+                  Anosmie :</label>
+                <label  class="form-control-label" >{{this.anosmia}}</label>
+
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Asthenie :</label>
+                <label  class="form-control-label" >{{this.asthenia}}</label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Fièvre :</label>
+                <label  class="form-control-label" >{{this.fever}}</label>
+              </div></div>
+
+            </div>
+
+            <!-- céphalées, myalgies,courbatures, confusion-->
+            <div class="row">
+
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  céphalées :</label>
+                <label  class="form-control-label" >{{this.headaches}}</label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Myalgies :</label>
+                <label  class="form-control-label" >{{this.myalgia}}</label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label class="form-control-label">
+                  Courbatures :</label>
+                <label  class="form-control-label" >{{this.muscleSoreness}}</label>
+
+              </div></div>
+
+
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  confusion:</label>
+                <label  class="form-control-label" >{{this.confusion}}</label>
+
+              </div></div>
+
+            </div>
+
+            <!-- Toux, Rhinnite,dyspnée, Fievre-->
+            <div class="row">
+
+              <div class="col-lg-3"><div class="form-group">
+                <label class="form-control-label">
+                  Toux :</label>
+                <label  class="form-control-label" >{{this.cough}}</label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label class="form-control-label">
+                  Rhinnite :</label>
+                <label  class="form-control-label" >{{this.Rhinitis}}</label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Dyspnée : </label>
+                <label  class="form-control-label" >{{this.dyspnea}}</label>
+              </div></div>
+
+            </div>
+
+            <!-- Nausée, Diahrée,Vomissements-->
+
+            <div class="row">
+
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Nausée :</label>
+                <label  class="form-control-label" >{{this.nausea}}</label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Diahrrée :</label>
+                <label  class="form-control-label" >{{this.diarrhea}}</label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label class="form-control-label">
+                  Vomissement :</label>
+                <label  class="form-control-label" >{{this.vomit}}</label>
+              </div></div>
+
+            </div>
+
+
+
+            <!-- AEG,doul. thoraciques, expectorations     -->
+            <div class="row">
+
+              <!-- Description -->
+              <div class="col-lg-4"><div class="form-group">
+                <label  class="form-control-label">
+                  Altération de l'Etat general :</label>
+                <label  class="form-control-label" >{{this.aeg}}</label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Douleurs thoraciques :</label>
+                <label  class="form-control-label" >{{this.chestPain}}</label>
+              </div></div>
+
+
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Expectorations :</label>
+                <label  class="form-control-label" >{{this.expectoration}}</label>
+              </div></div>
+
+            </div>
+
+            <hr class="my-4" />
+
+            <h6 class="heading text-muted mb-4">Défaillances</h6>
+            <!--det. resp ,det. neur , inst. hémo,urg. métabolique-->
+            <div class="row">
+
+
+              <!-- Description -->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Detresse respiratoire :</label>
+                <label  class="form-control-label" >{{this.respiratoryDistress}}</label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Detresse neurologique :</label>
+                <label  class="form-control-label" >{{this.neurologicalDistress}}</label>
+              </div></div>
+
+
+              <div class="col-lg-4"><div class="form-group">
+                <label  class="form-control-label">
+                  Instabilité hémodynamique :</label>
+                <label  class="form-control-label" >{{this.hemodynamicInstability}}</label>
+
+              </div></div>
+
+
+              <div class="col-lg-3"><div class="form-group">
+                <label class="form-control-label">
+                  Urgence métabolique :</label>
+                <label  class="form-control-label" >{{this.metabolicEmergency}}</label>
+              </div></div>
+            </div>
+            <hr class="my-4" />
+            <!--autres Sympthômes, date de début des symptômes, 1ers symptomes-->
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" >Autres Symptômes :</label>
+                  <label  class="form-control-label" >{{this.otherSymptomes}}</label>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" >Date du début des symptomes : </label>
+                  <label  class="form-control-label" >{{this.symptomsStartDate}}</label>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" >1er Symptomes :  </label>
+                  <label  class="form-control-label" >{{this.firstSymptoms}}</label>
+                </div>
+              </div>
+
+            </div>
+
+            <hr class="my-4" />
+
+
+
+            <h6 class="heading-small text-muted mb-4">Antécédents</h6>
+            <!--HTA,diabetes,acfa,Heart Failure-->
+            <div class="row">
+              <!--HTA-->
+              <div class="col-lg-3"><div class="form-group">
+                <label class="form-control-label">
+                  HTA :</label>
+                <label  class="form-control-label" >{{this.hta}}</label>
+              </div></div>
+
+              <!--diabetes-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Diabetes :</label>
+                <label  class="form-control-label" >{{this.diabetes}}</label>
+              </div></div>
+
+              <!--acFa-->
+              <div class="col-lg-3"><div class="form-group">
+                <label class="form-control-label">
+                  ACFA :</label>
+                <label  class="form-control-label" >{{this.acFa}}</label>
+              </div></div>
+
+              <!--heartFailure-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Insuffisance Cardiaque :</label>
+                <label  class="form-control-label" >{{this.heartFailure}}</label>
+              </div></div>
+
+
+
+
+            </div>
+
+            <!--CoronaryArtery,bpco,asthme,Hemodyalise-->
+            <div class="row">
+              <!--CoronaryArtery-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Coronaropathie :</label>
+                <label  class="form-control-label" >{{this.CoronaryArtery}}</label>
+              </div></div>
+
+              <!--BPCO-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  BPCO :</label>
+                <label  class="form-control-label" >{{this.bpco}}</label>
+              </div></div>
+
+              <!--asthma-->
+              <div class="col-lg-3"><div class="form-group">
+                <label class="form-control-label">
+                  Asthme :</label>
+                <label  class="form-control-label" >{{this.asthma}}</label>
+              </div></div>
+
+              <!--hemodialysis-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Hémodialyse :</label>
+                <label  class="form-control-label" >{{this.hemodialysis}}</label>
+              </div></div>
+
+
+
+
+            </div>
+
+            <!--AVC-I,AVC-H,Insf Ren,Cancer-->
+            <div class="row">
+              <!--ischemicStroke-->
+              <div class="col-lg-3"><div class="form-group">
+                <label class="form-control-label">
+                  AVC-ischémique :</label>
+                <label  class="form-control-label" >{{this.ischemicStrokes}}</label>
+              </div></div>
+
+              <!--hemorrhagicStroke-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  AVC-Hémoragique :</label>
+                <label  class="form-control-label" >{{this.hemorrhagicStroke}}</label>
+              </div></div>
+
+              <!--RenalFailure-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Insuffisance rénale :</label>
+                <label  class="form-control-label" >{{this.RenalFailure}}</label>
+              </div></div>
+
+              <!--activeCancer-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Cancer évolutif :</label>
+                <label  class="form-control-label" >{{this.activeCancer}}</label>
+              </div></div>
+
+
+
+
+            </div>
+
+            <!--immun.depr., path.pulm,mal.gen,tabac-->
+            <div class="row">
+              <!--immunosuppression-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Immunodepression :</label>
+                <label  class="form-control-label" >{{this.immunosuppression}}</label>
+              </div></div>
+
+              <!--pulmonaryPathology-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Pathologie Pulmonaire :</label>
+                <label  class="form-control-label" >{{this.pulmonaryPathology}}</label>
+              </div></div>
+
+              <!--generalIllness-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Maladie générale :</label>
+                <label  class="form-control-label" >{{this.generalIllness}}</label>
+              </div></div>
+
+              <!--Tabac-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Tabagique :</label>
+                <label  class="form-control-label" >{{this.smoker}}</label>
+              </div>
+
+
+
+              </div>
+
+
+
+
+            </div>
+            <!--Autres-->
+            <div class="row">
+              <!--otherchronicPathologies-->
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label" >Autres pathologies chroniques :</label>
+                  <label  class="form-control-label" >{{this.otherchronicPathologies}}</label>
+                </div>
+              </div>
+
+
+
+
+
+
+
+            </div>
+            <hr class="my-4" />
+            <!--traitement hab.-->
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" >Traitement habituel :</label>
+                  <label  class="form-control-label" >{{this.usualTreatment}}</label>
+                </div>
+              </div>
+            </div>
+            <h6 class="heading text-muted mb-4">Traitement récent</h6>
+            <!--AINS,corticotherapi,immunosup,chimiother-->
+            <div class="row">
+              <!--AINS-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  AINS :</label>
+                <label  class="form-control-label" >{{this.ains}}</label>
+              </div></div>
+
+              <!--corticotherapi-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Corticothérapie :</label>
+                <label  class="form-control-label" >{{this.corticotherapy}}</label>
+              </div></div>
+
+              <!--immunosuppressant-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Immunosuppresseur :</label>
+                <label  class="form-control-label" >{{this.immunosuppressant}}</label>
+              </div></div>
+
+              <!--chemotherapy-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Chimiothérapie :</label>
+                <label  class="form-control-label" >{{this.chemotherapy}}</label>
+              </div></div>
+
+
+
+            </div>
+            <hr class="my-4" />
+            <h6 class="heading text-muted mb-4">Type de contact</h6>
+
+            <!-- origin,contacts,isolations-->
+            <div class="row">
+              <!--originFromAnEndemicArea-->
+              <div class="col-lg-4"><div class="form-group">
+                <label  class="form-control-label">
+                  Provenance d'une zone endémique :</label>
+                <label  class="form-control-label" >{{this.originFromAnEndemicArea}}</label>
+              </div></div>
+
+              <!--contactWithAPositiveCovid-->
+              <div class="col-lg-4"><div class="form-group">
+                <label  class="form-control-label">
+                  Contact avec un Covid positif : </label>
+                <label  class="form-control-label" >{{this.contactWithAPositiveCovid}}</label>
+              </div></div>
+
+              <!--ContactWithASuspectedCase-->
+              <div class="col-lg-4"><div class="form-group">
+                <label  class="form-control-label">
+                  Contact avec un cas suspect :</label>
+                <label  class="form-control-label" >{{this.ContactWithASuspectedCase}}</label>
+              </div></div>
+
+              <!--respectForIsolation-->
+              <div class="col-lg-4"><div class="form-group">
+                <label  class="form-control-label">
+                  Respect de l'isolement : </label>
+                <label  class="form-control-label" >{{this.respectForIsolation}}</label>
+              </div></div>
+
+
+
+            </div>
+            <!--membres de la famille-->
+            <div class ="row">
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" >Membres de la famille :</label>
+                  <label  class="form-control-label" >{{this.familyMembers}}</label>
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <hr class="my-4" />
+            <h6 class="heading text-muted mb-4">Consultation</h6>
+            <!--FR SPo2,FI02,PAS,-->
+            <div class="row">
+              <!--FR-->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" >FR :</label>
+                  <label  class="form-control-label" >{{this.fr}}</label>
+                </div>
+              </div>
+              <!--spo2-->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" >Sp02 :</label>
+                  <label  class="form-control-label" >{{this.spo2}}</label>
+                </div>
+              </div>
+              <!--fio2-->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label">Fio2 :</label>
+                  <label  class="form-control-label" >{{this.fio2}}</label>
+                </div>
+              </div>
+              <!--pas-->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" >PAS :</label>
+                  <label  class="form-control-label" >{{this.pas}}</label>
+                </div>
+              </div>
+
+
+
+
+
+
+            </div>
+
+            <!--pad fc,gcs,gad,-->
+            <div class="row">
+              <!--pad-->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" >PAD :</label>
+                  <label  class="form-control-label" >{{this.pad}}</label>
+                </div>
+              </div>
+              <!--fc-->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" >FC :</label>
+                  <label  class="form-control-label" >{{this.fc}}</label>
+                </div>
+              </div>
+              <!--gcs-->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label">GCS :</label>
+                  <label  class="form-control-label" >{{this.gcs}}</label>
+                </div>
+              </div>
+              <!--gad-->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" >GAD :</label>
+                  <label  class="form-control-label" >{{this.gad}}</label>
+                </div>
+              </div>
+
+
+
+
+
+
+            </div>
+
+            <!--Temp -->
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" >Température :</label>
+
+                  <label  class="form-control-label" >{{this.temperatur}} °C</label>
+                </div>
+              </div>
+            </div>
+            <h6 class="heading text-muted mb-4">Sous:</h6>
+
+            <!-- NAD,DOB,ADR,sédaté-->
+            <div class="row">
+              <!--nad-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Nad :</label>
+                <label  class="form-control-label" >{{this.nad}} </label>
+              </div></div>
+
+              <!--dob-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Dob :</label>
+                <label  class="form-control-label" >{{this.dob}} </label>
+              </div></div>
+
+              <!--adr-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Adr :</label>
+                <label  class="form-control-label" >{{this.adr}} </label>
+              </div></div>
+
+              <!--sedated-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Sédaté : </label>
+                <label  class="form-control-label" >{{this.sedated}} </label>
+              </div></div>
+
+
+
+            </div>
+
+            <!-- signsOfStruggles,coldEnds,marbrure-->
+            <div class="row">
+              <!--signsOfStruggles-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Signes de luttes :</label>
+                <label  class="form-control-label" >{{this.signsOfStruggles}} </label>
+              </div></div>
+
+              <!--coldEnds-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Extrémités froides : </label>
+                <label  class="form-control-label" >{{this.coldEnds}} </label>
+              </div></div>
+
+              <!--marbrure-->
+              <div class="col-lg-3"><div class="form-group">
+                <label class="form-control-label">
+                  Marbrures :</label>
+                <label  class="form-control-label" >{{this.marbrure}} </label>
+              </div></div>
+
+
+
+
+            </div>
+
+            <hr class="my-4" />
+            <h6 class="heading text-muted mb-4">Orientation:</h6>
+            <!--orientation, PCR-->
+            <div class ="row">
+              <!-- Orientation-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Orientation :</label>
+                <label  class="form-control-label" >{{this.orientation}} </label>
+              </div>
+              </div>
+
+              <!-- PCR-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  PCR :</label>
+                <label  class="form-control-label" >{{this.pcr}} </label>
+              </div>
+              </div>
+
+              <!--datePcr-->
+              <div class="col-lg-3"><div class="form-group">
+                <label class="form-control-label">
+                  Date PCR :</label>
+                <label  class="form-control-label" >{{this.datepcr}} </label>
+              </div>
+              </div>
+
+              <!--tdm-->
+              <div class="col-lg-3"><div class="form-group">
+                <label class="form-control-label">
+                  TDM :</label>
+                <label  class="form-control-label" >{{this.tdm}} </label>
+              </div>
+              </div>
+
+              <!--healthCareWorker-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Agent de santé :</label>
+                <label  class="form-control-label" >{{this.healthCareWorker}} </label>
+              </div></div>
+
+              <!--localCase-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Cas de contamination locale :</label>
+                <label  class="form-control-label" >{{this.localCase}} </label>
+              </div></div>
+
+            </div>
+
+            <hr class="my-4" />
+            <h6 class="heading text-muted mb-4">Traitement:</h6>
+
+            <!--HOchlo,chlo,azythro,paracétamol-->
+            <div class="row">
+              <!--Hydroxycholoroquine-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Hydroxycholoroquine :</label>
+                <label  class="form-control-label" >{{this.hydroxycholoroquine}} </label>
+              </div></div>
+
+              <!--chlo-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Chloroquine :</label>
+                <label  class="form-control-label" >{{this.chloroquine}} </label>
+              </div></div>
+
+              <!--azythro-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Azithromycine :</label>
+
+                <label  class="form-control-label" >{{this.azithromycine}} </label>
+              </div></div>
+
+              <!--Paracetamol-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Paracetamol :</label>
+
+                <label  class="form-control-label" >{{this.paracetamol}} </label>
+              </div></div>
+
+
+
+            </div>
+
+            <!--Sintrom,Lopinavir/Ritonavir,Oseltamivir,Corticoides -->
+            <div class="row">
+              <!--Sintrom-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Sintrom :</label>
+                <label  class="form-control-label" >{{this.sintrom}} </label>
+              </div></div>
+
+              <!--Lopinavir/Ritonavir-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Lopinavir/Ritonavir :</label>
+                <label  class="form-control-label" >{{this.lopinavir}} </label>
+              </div></div>
+
+              <!--Oseltamivir-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Oseltamivir :</label>
+                <label  class="form-control-label" >{{this.oseltamivir}} </label>
+              </div></div>
+
+              <!--Corticoides -->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Corticoides :</label>
+                <label  class="form-control-label" >{{this.corticoides}} </label>
+              </div></div>
+
+
+
+            </div>
+
+            <!--heparine,antibiotique-->
+            <div class ="row">
+              <!-- heparine-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Heparine :</label>
+                <label  class="form-control-label" >{{this.heparine}} </label>
+              </div>
+              </div>
+
+              <!-- Antibiotique-->
+              <div class="col-lg-3"><div class="form-group">
+                <label  class="form-control-label">
+                  Antibiotique :</label>
+                <label  class="form-control-label" >{{this.antibiotique}} </label>
+              </div>
+              </div>
+
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" >Nom :</label>
+                  <label  class="form-control-label" >{{this.otherTreatment}} </label>
+                </div>
+              </div>
+            </div>
+
+          <hr class="my-4" />
+          <h6 class="heading text-muted mb-4">Surveillance:</h6>
+
+          <div class="card-body" *ngFor="let survey of ListSurveyPatient; let index = index;">
+
+            <div class="row" >
+              <div class="col-lg-3">
+                <span>JOUR {{index+1}} :</span>
+                <div class="form-group">
+                  <label class="form-control-label" >date : </label>
+                  <label  class="form-control-label" > {{ survey.date | date:'dd MMMM yyyy':'':'fr-FR'}} </label>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

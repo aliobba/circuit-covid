@@ -1,0 +1,192 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-xl-3 col-lg-6">
+
+        </div>
+
+        <div class="col-xl-3 col-lg-6">
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+
+    <div class="col-xl-10 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Ajouter un Admin/DSSB</h3>
+            </div>
+
+          </div>
+        </div>
+        <div class="card-body">
+          <form role="form" [formGroup]="AddForm" (ngSubmit)="ajouter()" >
+            <h6 class="heading-small text-muted mb-4">Information utilisateur</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label"  for="nom">Nom :</label>
+                    <input type="text" id="nom" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }" formControlName="nom" class="form-control form-control-alternative" placeholder="Nom" >
+                    <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+                      <div *ngIf="f.nom.errors.required">Nom Obligatoire</div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="prenom" class="form-control-label">
+                      Prénom:</label>
+                    <input type="text" id="prenom" formControlName="prenom" [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }" class="form-control form-control-alternative" placeholder="prenom" >
+                    <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+                      <div *ngIf="f.prenom.errors.required">Prénom Obligatoire</div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="username"> Email:</label>
+                    <input type="text" id="username" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" class="form-control form-control-alternative" placeholder="Email" >
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                      <div *ngIf="f.username.errors.required">Email Obligatoire</div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="pwd">Mot de passe :</label>
+                    <input type="password" id="pwd" formControlName="pwd" [ngClass]="{ 'is-invalid': submitted && f.pwd.errors }" class="form-control form-control-alternative" placeholder="Mot de passe" >
+                    <div *ngIf="submitted && f.pwd.errors" class="invalid-feedback">
+                      <div *ngIf="f.pwd.errors.required">Mot de passe Obligatoire</div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+
+              <div class="row">
+
+
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="Adress">Adresse :</label>
+                    <input type="text" id="Adress" [ngClass]="{ 'is-invalid': submitted && f.Adress.errors }" formControlName="Adress" class="form-control form-control-alternative" placeholder="3,Rue blabla,2079" >
+                    <div *ngIf="submitted && f.Adress.errors" class="invalid-feedback">
+                      <div *ngIf="f.Adress.errors.minlength">Veuillez saisir au minimum 10 caratères</div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="codepost">Code postal:</label>
+                    <input type="text" id="codepost" [ngClass]="{ 'is-invalid': submitted && f.codepost.errors }" formControlName="codepost" class="form-control form-control-alternative" placeholder="xxxx" >
+                    <div *ngIf="submitted && f.codepost.errors" class="invalid-feedback">
+                      <div *ngIf="f.codepost.errors.minlength">Veuillez saisir 4 caratères</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="gouvernorat" class="form-control-label">
+                      Gouvernorat:</label>
+                    <select #gouv class="form-control" id="gouvernorat" [ngClass]="{ 'is-invalid': submitted && f.gouvernorat.errors }" formControlName="gouvernorat" (change)="onChangeName($event)" [(ngModel)]="selectedname" >
+                      <option [ngValue]="null">Selectionnez un gouvernement</option>
+                      <option *ngFor="let gov of gouvernerat">{{gov}}</option>
+
+
+                    </select>
+                    <div *ngIf="submitted && f.gouvernorat.errors" class="invalid-feedback">
+                      <div *ngIf="f.gouvernorat.errors.required">Gouvernorat Obligatoire</div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                <div class="col-lg-6" *ngIf="gouv.selectedIndex != 0 ">
+                  <div class="form-group">
+                    <label for="delegation" class="form-control-label">
+                      Délégation :</label>
+                    <select  class="form-control " id="delegation" [ngClass]="{ 'is-invalid': submitted && f.delegation.errors }" formControlName="delegation">
+                      <option [ngValue]="null">Selectionnez une délégation</option>
+                      <option *ngFor="let del of delegation">{{del}}</option>
+
+
+                    </select>
+                    <div *ngIf="submitted && f.delegation.errors" class="invalid-feedback">
+                      <div *ngIf="f.delegation.errors.required">Délégation Obligatoire</div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+
+
+              <div class="row">
+
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label">
+                      Rôle:</label>
+                    <select [ngClass]="{ 'is-invalid': submitted && f.rl.errors }" formControlName="rl"  class="form-control " id="rl">
+
+                      <option value="admin">Admin</option>
+                      <option value="dssb">DSSB</option>
+
+
+                    </select>
+
+                    <div *ngIf="submitted && f.rl.errors" class="invalid-feedback">
+                      <div *ngIf="f.rl.errors.required">Rôle Obligatoire</div>
+                    </div>
+                  </div></div>
+
+              </div>
+
+
+            </div>
+
+            <div class="col-lg-10">
+              <div class="form-group">
+                <button  class="btn btn-primary" >Ajouter</button>
+                ou
+
+                <a routerLink="/dashboard" ><button type="reset" class="btn btn-secondary">
+                  Annuler</button></a>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

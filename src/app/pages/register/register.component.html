@@ -1,0 +1,330 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-xl-3 col-lg-6">
+
+        </div>
+
+        <div class="col-xl-3 col-lg-6">
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+
+    <div class="col-xl-10 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Fiche patient à surveiller</h3>
+            </div>
+
+          </div>
+        </div>
+        <div class="card-body">
+
+          <h6 class="heading-small text-muted mb-4">Informations générales</h6>
+          <form [formGroup]="AddSurveyForm" (ngSubmit)="ajouter()" class="pl-lg-4">
+            <!-- Nom, prénom, date de Nais, sexe -->
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="name">Nom</label>
+                  <input type="text" disabled id="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" formControlName="name" class="form-control form-control-alternative" placeholder="Nom" >
+
+                  <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <div *ngIf="f.name.errors.required">Nom Obligatoire</div>
+                    <div *ngIf="f.name.errors.minlength">Au minimum 2 caractères</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="familyName">Prénom</label>
+                  <input type="text" disabled id="familyName" [ngClass]="{ 'is-invalid': submitted && f.familyName.errors }" formControlName="familyName" class="form-control form-control-alternative" placeholder="Prénom" >
+                  <div *ngIf="submitted && f.familyName.errors" class="invalid-feedback">
+                    <div *ngIf="f.familyName.errors.required">Prénom Obligatoire</div>
+                    <div *ngIf="f.familyName.errors.minlength">Au minimum 2 caractères</div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+            </div>
+
+            <hr class="my-4" />
+
+            <h6 class="heading text-muted mb-4">Motif de consultation</h6>
+            <h6 class="heading text-muted mb-4">Symptômes</h6>
+
+            <!-- Agueuesie, Anosmie,Asthenie, Fievre-->
+            <div class="row">
+              <div class="col-lg-3"><div class="form-group">
+                <label for="ageusia" class="form-control-label">Agueusie</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox" id="ageusia"  [ngClass]="{ 'is-invalid': submitted && f.ageusia.errors }" formControlName="ageusia">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div>
+              </div>
+
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="anosmia" class="form-control-label">
+                  Anosmie</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox" id="anosmia"  [ngClass]="{ 'is-invalid': submitted && f.anosmia.errors }" formControlName="anosmia">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="asthenia" class="form-control-label">
+                  Asthenie</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="asthenia" [ngClass]="{ 'is-invalid': submitted && f.asthenia.errors }" formControlName="asthenia">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="headache" class="form-control-label">
+                  céphalées:</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="headache" [ngClass]="{ 'is-invalid': submitted && f.headache.errors }" formControlName="headache">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+            </div>
+
+            <!-- céphalées, myalgies,courbatures, confusion-->
+            <div class="row">
+
+
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="myalgia" class="form-control-label">
+                  Myalgies</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="myalgia" [ngClass]="{ 'is-invalid': submitted && f.myalgia.errors }" formControlName="myalgia">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="confusion" class="form-control-label">
+                  Myalgies</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="confusion" [ngClass]="{ 'is-invalid': submitted && f.confusion.errors }" formControlName="confusion">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="cough" class="form-control-label">
+                  Toux</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="cough" [ngClass]="{ 'is-invalid': submitted && f.cough.errors }" formControlName="cough">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="Rhinitis" class="form-control-label">
+                  Rhinnite</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="Rhinitis" [ngClass]="{ 'is-invalid': submitted && f.Rhinitis.errors }" formControlName="Rhinitis">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+            </div>
+
+            <!-- Nausée, Diahrée,Vomissements-->
+            <div class="row">
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="dyspnea" class="form-control-label">
+                  Dyspnée </label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="dyspnea" [ngClass]="{ 'is-invalid': submitted && f.dyspnea.errors }" formControlName="dyspnea">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+
+
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="nausea" class="form-control-label">
+                  Nausée</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="nausea" [ngClass]="{ 'is-invalid': submitted && f.nausea.errors }" formControlName="nausea">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="diarrhea" class="form-control-label">
+                  Diahrrée</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="diarrhea" [ngClass]="{ 'is-invalid': submitted && f.diarrhea.errors }" formControlName="diarrhea">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="vomit" class="form-control-label">
+                  Vomissement</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="vomit" [ngClass]="{ 'is-invalid': submitted && f.vomit.errors }" formControlName="vomit">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+            </div>
+
+
+
+            <!-- chestPain,respiratoryDistress     -->
+            <div class="row">
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="respiratoryDistress" class="form-control-label">
+                  Detresse respiratoire</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="respiratoryDistress" [ngClass]="{ 'is-invalid': submitted && f.respiratoryDistress.errors }" formControlName="respiratoryDistress">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+
+              <div class="col-lg-3"><div class="form-group">
+                <label for="chestPain" class="form-control-label">
+                  Douleurs thoraciques</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="chestPain" [ngClass]="{ 'is-invalid': submitted && f.chestPain.errors }" formControlName="chestPain">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+              <!--Sintrom-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="abdominalPain" class="form-control-label">
+                  Abdominal Pain</label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="abdominalPain" [ngClass]="{ 'is-invalid': submitted && f.abdominalPain.errors }" formControlName="abdominalPain">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+
+
+              <!--odynophagia-->
+              <div class="col-lg-3"><div class="form-group">
+                <label for="odynophagia" class="form-control-label">
+                  Odynophagia </label>
+                <span class="clearfix"></span>
+                <label class="custom-toggle">
+                  <input type="checkbox"  id="odynophagia" [ngClass]="{ 'is-invalid': submitted && f.odynophagia.errors }" formControlName="odynophagia">
+                  <span class="custom-toggle-slider rounded-circle"></span>
+                </label>
+              </div></div>
+
+
+            </div>
+
+
+            <hr class="my-4" />
+            <h6 class="heading text-muted mb-4">Consultation</h6>
+            <!--FR SPo2,FI02,PAS,-->
+            <div class="row">
+
+              <!--pas-->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="pas">PAS</label>
+                  <input type="number" min="0" id="pas" class="form-control form-control-alternative" placeholder=".." [ngClass]="{ 'is-invalid': submitted && f.pas.errors }" formControlName="pas">
+                  <div *ngIf="submitted && f.pas.errors" class="invalid-feedback">
+                    <div *ngIf="f.pas.errors.min">fc minimum 0</div>
+                    <div *ngIf="f.pas.errors.max">fc maximum 30</div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+              <!--pad-->
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="pad">PAD</label>
+                  <input type="number" min="0" id="pad" class="form-control form-control-alternative" placeholder=".." [ngClass]="{ 'is-invalid': submitted && f.pad.errors }" formControlName="pad">
+                  <div *ngIf="submitted && f.pad.errors" class="invalid-feedback">
+                    <div *ngIf="f.pad.errors.min">fc minimum 0</div>
+                    <div *ngIf="f.pad.errors.max">fc maximum 20</div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="temperatur">température</label>
+                  <input type="number" min="0" id="temperatur" [ngClass]="{ 'is-invalid': submitted && f.temperatur.errors }" formControlName="temperatur" class="form-control form-control-alternative" placeholder="37" >
+                  <div *ngIf="submitted && f.temperatur.errors" class="invalid-feedback">
+                    <div *ngIf="f.temperatur.errors.required">température Obligatoire</div>
+                    <div *ngIf="f.temperatur.errors.min">température minimum 27</div>
+                    <div *ngIf="f.temperatur.errors.max">température minimum 43</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+
+
+
+
+
+            <div class="col-lg-10">
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary" >Ajouter</button>
+
+                <a routerLink="/listepatient" ><button type="reset" class="btn btn-secondary">
+                  Annuler</button></a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

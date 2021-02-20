@@ -1,0 +1,75 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-xl-3 col-lg-6">
+
+        </div>
+
+        <div class="col-xl-3 col-lg-6">
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-10 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <div class="row align-items-center">
+            <div class="col">
+              <h6 class="text-uppercase text-muted ls-1 mb-1"></h6>
+              <h2 class="mb-0">Modifier votre mot de passe </h2>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="pwd" class="form-control-label">
+                  Ancien mot de passe:</label>
+                <input [(ngModel)]="this.user.pwd" id="pwd" class="form-control form-control-alternative" placeholder="Ancien mot de passe" >
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="new" class="form-control-label">
+                  Nouveau mot de passe:</label>
+                <input [(ngModel)]="this.user.newpwd" id="new" class="form-control form-control-alternative" placeholder=" Nouveau mot de passe" >
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="conf" class="form-control-label">
+                  Confirmer mot de passe:</label>
+                <input [(ngModel)]="this.user.confpwd" id="conf" class="form-control form-control-alternative" placeholder="Confirmer mot de passe" >
+              </div>
+            </div>
+
+            </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <button class="btn btn-primary" (click)="update()">Modifier</button>
+                ou
+
+                <a routerLink="/dashboard" ><button type="reset" class="btn btn-secondary">
+                  Annuler</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
